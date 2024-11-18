@@ -1,0 +1,60 @@
+/* Container for input and button */
+.create_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between input and button */
+    margin: 20px 0;
+  }
+  
+  /* Style for input field */
+  .create_form input {
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .create_form input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  }
+  
+  /* Style for button */
+  .create_form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50; /* Green */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .create_form button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+  }
+  
+  .create_form button:active {
+    transform: translateY(1px);
+    background-color: #3e8e41;
+  }
+  
+  /* Optional: Responsive Design */
+  @media (max-width: 600px) {
+    .create_form {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .create_form input {
+      width: 100%; /* Full width on small screens */
+    }
+  }
+  
