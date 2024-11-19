@@ -32,7 +32,7 @@ function Home() {
   const handleSave = (id) => {
     if (!newTask.trim()) return; // Prevent saving empty tasks
     axios
-      .put(`http://localhost:2001/update/${id}`, { task: newTask })
+      .put(`http://localhost:2001/${id}`, { task: newTask })
       .then((result) => {
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
@@ -57,7 +57,8 @@ function Home() {
   // Toggle task completion (strike-through)
   const toggleCompletion = (id, currentStatus) => {
     axios
-      .put(`http://localhost:2001/toggle-complete/${id}`, { done: !currentStatus })
+
+    .put(`http://localhost:2001/toggle-complete/${id}`, { done: !currentStatus })
       .then(() => {
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
