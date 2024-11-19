@@ -11,8 +11,8 @@ import {
 
 function Home() {
   const [todos, setTodos] = useState([]);
-  const [editingId, setEditingId] = useState(null); // ID of the todo being edited
-  const [newTask, setNewTask] = useState(''); // Store updated task content
+  const [editingId, setEditingId] = useState(null);
+  const [newTask, setNewTask] = useState('');
 
   // Fetch todos on component mount
   useEffect(() => {
@@ -30,7 +30,7 @@ function Home() {
 
   // Handle save after editing
   const handleSave = (id) => {
-    if (!newTask.trim()) return; // Prevent saving empty tasks
+    if (!newTask.trim()) return; 
     axios
       .put(`http://localhost:2001/${id}`, { task: newTask })
       .then((result) => {
@@ -39,7 +39,7 @@ function Home() {
             todo._id === id ? { ...todo, task: result.data.task } : todo
           )
         );
-        setEditingId(null); // Exit edit mode
+        setEditingId(null); 
       })
       .catch((err) => console.error('Error updating todo:', err));
   };
