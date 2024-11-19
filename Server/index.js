@@ -5,11 +5,9 @@ const TodoModel = require('./Models/Todo');
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
 mongoose
   .connect('mongodb://127.0.0.1:27017/test', {
     useNewUrlParser: true,
@@ -18,9 +16,7 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB:', err));
 
-// Routes
 
-// Fetch all todos
 app.get('/get', (req, res) => {
   TodoModel.find()
     .then((result) => res.status(200).json(result))
@@ -29,7 +25,6 @@ app.get('/get', (req, res) => {
     );
 });
 
-// Add a new todo
 app.post('/add', (req, res) => {
   const { task } = req.body;
 
@@ -44,7 +39,6 @@ app.post('/add', (req, res) => {
     );
 });
 
-// Update a todo (edit task and/or update 'done' status)
 app.put('/update/:id', (req, res) => {
   const { id } = req.params;
   const { task, done } = req.body;
@@ -56,7 +50,7 @@ app.put('/update/:id', (req, res) => {
   TodoModel.findByIdAndUpdate(
     id,
     updateData,
-    { new: true } // Return the updated document
+    { new: true } 
   )
     .then((result) => {
       if (!result) {
@@ -69,7 +63,6 @@ app.put('/update/:id', (req, res) => {
     );
 });
 
-// Toggle 'done' status
 app.put('/toggle-complete/:id', (req, res) => {
   const { id } = req.params;
   const { done } = req.body;
@@ -81,7 +74,7 @@ app.put('/toggle-complete/:id', (req, res) => {
   TodoModel.findByIdAndUpdate(
     id,
     { done },
-    { new: true } // Return the updated document
+    { new: true } 
   )
     .then((result) => {
       if (!result) {
@@ -94,7 +87,6 @@ app.put('/toggle-complete/:id', (req, res) => {
     );
 });
 
-// Delete a todo
 app.delete('/delete/:id', (req, res) => {
   const { id } = req.params;
 
@@ -110,7 +102,6 @@ app.delete('/delete/:id', (req, res) => {
     );
 });
 
-// Start the server
 app.listen(2001, () => {
   console.log('Server is running on http://localhost:2001');
 });

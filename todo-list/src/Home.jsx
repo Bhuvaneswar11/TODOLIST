@@ -14,7 +14,6 @@ function Home() {
   const [editingId, setEditingId] = useState(null);
   const [newTask, setNewTask] = useState('');
 
-  // Fetch todos on component mount
   useEffect(() => {
     axios
       .get('http://localhost:2001/get')
@@ -22,13 +21,11 @@ function Home() {
       .catch((err) => console.error('Error fetching todos:', err));
   }, []);
 
-  // Handle edit toggle (open edit input)
   const handleEditToggle = (id, task) => {
     setEditingId(id);
     setNewTask(task);
   };
 
-  // Handle save after editing
   const handleSave = (id) => {
     if (!newTask.trim()) return; 
     axios
@@ -44,7 +41,6 @@ function Home() {
       .catch((err) => console.error('Error updating todo:', err));
   };
 
-  // Handle delete
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:2001/delete/${id}`)
@@ -54,7 +50,6 @@ function Home() {
       .catch((err) => console.error('Error deleting todo:', err));
   };
 
-  // Toggle task completion (strike-through)
   const toggleCompletion = (id, currentStatus) => {
     axios
 
